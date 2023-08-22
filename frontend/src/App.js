@@ -3,6 +3,8 @@ import LoginPage from './Pages/LoginPage'
 
 import Header from './Components/Header'
 
+import { AuthProvider } from './Context/AuthContext'
+
 import PrivateRoutes from './Utils/PrivateRoutes'
 
 
@@ -15,13 +17,15 @@ function App() {
       {/* <p>This is the base home page</p> */}
 
       <Router>
-      <Header/>
+        <AuthProvider>
+        <Header/>
         <Routes>
-          <Route element = {<PrivateRoutes/>}>
-            <Route element = {<HomePage/>} path='/' exact/>
-          </Route>
+              <Route element = {<PrivateRoutes/>}>
+              <Route element = {<HomePage/>} path='/' exact/>
+            </Route>
           <Route element = {<LoginPage/>} path = 'login/' />
         </Routes>
+        </AuthProvider>
       </Router>
 
     </div>
