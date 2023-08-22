@@ -1,2 +1,2 @@
 # Django-Rest-and-React-Axios
-The projects is developed to demonstrate the implementation of making API calls using Django Rest Framework and React Axios
+This project demonstates the implementations of  Django REST API and Axios implementations. 
