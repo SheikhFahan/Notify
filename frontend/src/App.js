@@ -14,7 +14,6 @@ function App() {
   return (
     <>
     <div className='App'>
-      {/* <p>This is the base home page</p> */}
 
       <Router>
         <AuthProvider>
@@ -22,7 +21,7 @@ function App() {
         <Routes>
               <Route element = {<PrivateRoutes/>}>
               <Route element = {<HomePage/>} path='/' exact/>
-            </Route>
+              </Route>
           <Route element = {<LoginPage/>} path = 'login/' />
         </Routes>
         </AuthProvider>
