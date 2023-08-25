@@ -1,17 +1,29 @@
 from django.shortcuts import render
 
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework import generics
 
 
+from .serializers import NoteSerializers
+from .models import Note
 
 
+class PdfListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializers
 
-@api_view(['GET'])
-def test(request):
-    routes = [
-        '/api/tokens',
-        '/api/token/refresh',
-    ]
+    def perform_create(self, serializer):
+        if self.request.user:
+            serializer.save(prof = self.request.user)
+        return Response({"unvalid user": "you must be logged"}, status=400)
 
-    return Response(routes)
+
+class PdfDetailAPIView(generics.RetrieveAPIView):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializers
+    lookup_field = 'pk'
+
+class PdfDestroyAPIView(generics.DestroyAPIView):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializers
+    lookup_field = 'pk'

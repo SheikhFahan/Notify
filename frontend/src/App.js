@@ -2,6 +2,7 @@ import HomePage from './Pages/HomePage';
 import LoginPage from './Pages/LoginPage'
 
 import Header from './Components/Header'
+import NavbarComp from './Components/NavbarComp'
 
 import { AuthProvider } from './Context/AuthContext'
 
@@ -14,7 +15,7 @@ function App() {
   return (
     <>
     <div className='App'>
-
+      <NavbarComp/>
       <Router>
         <AuthProvider>
         <Header/>
