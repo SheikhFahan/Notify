@@ -13,25 +13,25 @@ import PrivateRoutes from './Utils/PrivateRoutes'
 
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import PdfPage from './Pages/PdfPage';
 
 function App() {
   return (
     <>
     <div className='App'>
-      <NavbarComp/>
       <Router>
         <AuthProvider>
+        <NavbarComp/>
         <Header/>
         <Routes>
           <Route element = {<PrivateRoutes/>}>
             <Route element = {<Hero />} path='/' exact/>
           </Route>
           <Route element = {<LoginPage/>} path = 'login/' />
-          {/* <Route path="/" element=/> */}
           <Route index element={<Hero />} />
           <Route path="/about" element={<AboutPage />}/>
           <Route path="/branches" element={<Branches />}/>
-          {/* <Route path="/login" element={<LoginForm />}/> */}
+          <Route path="/notes" element={<PdfPage />}/>
           <Route path="*" element={<NoPage />} />
         </Routes>
         </AuthProvider>
