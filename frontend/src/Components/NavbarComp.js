@@ -48,7 +48,7 @@ const NavbarComp = () => {
               <NavDropdown.Item to="#action/3.2">Assignments</NavDropdown.Item>
               <NavDropdown.Item to="#action/3.3">Question Papers</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item to="#action/3.4">Upload Resources</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/upload">Upload Resources</NavDropdown.Item>
             </NavDropdown>
             {!user && <Nav.Link to="/login" as={Link} className="mx-3">Login</Nav.Link>}
             <Nav.Link to="/about" as={Link} className="mx-3" style={maxContent}>About Us</Nav.Link>

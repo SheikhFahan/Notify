@@ -7,13 +7,16 @@ import AboutPage from './Pages/AboutPage'
 import Branches from './Pages/Branches'
 import NoPage from './Pages/NoPage'
 import Hero from './Pages/Hero'
+import PdfPage from './Pages/PdfPage';
+import NotesUpload from './Pages/NotesUpload';
+
 import { AuthProvider } from './Context/AuthContext'
 
 import PrivateRoutes from './Utils/PrivateRoutes'
 
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import PdfPage from './Pages/PdfPage';
+
 
 function App() {
   return (
@@ -25,13 +28,15 @@ function App() {
         <Header/>
         <Routes>
           <Route element = {<PrivateRoutes/>}>
-            <Route element = {<Hero />} path='/' exact/>
+            {/* <Route element = {<Hero />} path='/' exact/> */}
+            <Route path="/upload" element={<NotesUpload />}/>
           </Route>
-          <Route element = {<LoginPage/>} path = 'login/' />
+          <Route element = {<LoginPage/>} path = '/login' />
           <Route index element={<Hero />} />
           <Route path="/about" element={<AboutPage />}/>
           <Route path="/branches" element={<Branches />}/>
           <Route path="/notes" element={<PdfPage />}/>
+
           <Route path="*" element={<NoPage />} />
         </Routes>
         </AuthProvider>

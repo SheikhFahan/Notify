@@ -32,7 +32,7 @@ const NotesCard = () => {
          <Card.Text>Ideal index : {item.ideal_index}</Card.Text>
          <Card.Title>Subject Code : {item.sub_code}</Card.Title>        
          <Card.Link as={Link} to={item.note}>View Note</Card.Link>
-         <Card.Link as={Link} to={item.note} target='_blank' download={item.note} >Download Note</Card.Link>
+         <Card.Link as={Link} to={item.note} target='_blank' download ={item.note} >Download Note</Card.Link>
        </Card.Body>
      </Card>
      ))}
