@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import AuthContext from '../Context/AuthContext'
 
 const Header = () => {
-    let {user, logoutUser} = useContext(AuthContext) 
+    let {user, logoutUser} = useContext(AuthContext)
     return (
     <div>
         <Link to='/' > Home</Link>

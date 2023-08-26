@@ -1,12 +1,15 @@
-import { end } from '@popperjs/core';
-import React from 'react'
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+import AuthContext from '../Context/AuthContext';
+
 
 const NavbarComp = () => {
+// this line is breaking my code
+  // const { user } = useContext(AuthContext);
 
   const mainNav = {
     margin: '0 7%',
@@ -47,6 +50,9 @@ const NavbarComp = () => {
             </NavDropdown>
             <Nav.Link href="/login" className="mx-3">Login</Nav.Link>
             <Nav.Link href="/about" className="mx-3" style={maxContent}>About Us</Nav.Link>
+            wanna use that line over here
+            {/* <p className="mx-3" style={maxContent}>Hello, {user}</p> */}
+
 
           </Nav>
         </Navbar.Collapse>
