@@ -1,12 +1,19 @@
-import React,  { useContext } from 'react';
+import React,  { useState } from 'react';
 
 import { Container } from 'react-bootstrap';
-import AuthContext from '../Context/AuthContext'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import axios from 'axios';
+
 const  RegisterPage = () => {
 
+    let [username , setUsername] = useState("")
+
+    let [passwords, setPasswords] = useState({
+        'password1':"",
+        'password2':""
+    })
 
     const containerStyle = {
         display : 'flex',
@@ -18,32 +25,43 @@ const  RegisterPage = () => {
         maxWidth : 'fit-content'
     }
 
-    let registerUserCheck= (e) =>{
-        // let username = 'asdf'
-        const username1 = e.target.username1.value
-        const username2 = e.target.username2.value
-        {(username1 === username2) ? registerUser() : alert("usernames don't match")}
-
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setPasswords((prevPasswords) => ({
+          ...prevPasswords,
+          [name]: value,
+        }));
+      };
+    
+    const handleUsername = (e) => {
+        setUsername(e.target.value)
     }
 
-    let registerUser = (e) => {
-        alert('registred')
+    let handleSubmit = async (e) =>{
+        e.preventDefault();
+        if(passwords.password1 !== passwords.password2){
+            console.error('passwords do not match');
+            return 
+        }
+        const formData = new FormData()
+        formData.append('username', username)
+        formData.append('password', passwords.password1)
+
+        try{
+            const response = await axios.post('//127.0.0.1:8000/api/create_user',formData)
+            console.log('Response', response.data)
+        }catch (error) {
+            console.error('Registration failed:', error);
+          }
     }
     
 
   return (
     <Container style={containerStyle}>
-    <Form style={formStyle} onSubmit={registerUserCheck} target='_blank'>
+    <Form style={formStyle} onSubmit={handleSubmit} >
       <Form.Group className="mb-3" >
         <Form.Label>Username</Form.Label>
-        <Form.Control type="text" placeholder="Enter Username"  name='username1'/>
-        <Form.Text className="text-muted">
-          Consider your data leaked.
-        </Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-3" >
-        <Form.Label>Username</Form.Label>
-        <Form.Control type="text" placeholder="Re-enter Username"  name='username2'/>
+        <Form.Control type="text" placeholder="Enter Username"  name='username' onChange={handleUsername}/>
         <Form.Text className="text-muted">
           Consider your data leaked.
         </Form.Text>
@@ -51,7 +69,12 @@ const  RegisterPage = () => {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password"  name='password'/>
+        <Form.Control type="password" placeholder="Enter Password"  name='password1' onChange={handleInputChange}/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Re-enter Password"  name='password2' onChange={handleInputChange} />
       </Form.Group>
       <Button variant="primary" type="submit" >
         Submit
