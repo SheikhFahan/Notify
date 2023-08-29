@@ -2,7 +2,11 @@ from django.urls import path
 
 from . import views 
 urlpatterns = [
-    path('',views.PdfListCreateAPIView.as_view()),
+    path('',views.PdfListAPIView.as_view()),
+    path('sub_code/', views.SubCodeListAPIView.as_view()),
+    # path('create/', views.PdfCreateAPIView.as_view()),
+    path('create/', views.test)
+
 ]
 
 

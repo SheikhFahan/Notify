@@ -57,7 +57,9 @@ class Assignment(models.Model):
 
 class Note(models.Model):
     name = models.CharField(null = False , blank = False, max_length=50)
-    prof= models.ForeignKey(Professor, null = False, on_delete=models.CASCADE, blank = False )
+    user = models.OneToOneField(User,on_delete=models.CASCADE, null = True)  
+    
+    # prof= models.ForeignKey(Professor, null = False, on_delete=models.CASCADE, blank = False )
     sub_code = models.ForeignKey(SubCode, null = True, on_delete = models.SET_NULL)
     ideal_index = models.IntegerField(null = True, blank = True)
     upload_date = models.DateField(null = True, blank = True,  auto_now=False, auto_now_add=True)

@@ -26,6 +26,7 @@ export const AuthProvider = ({children}) => {
         })
 
         let data = await response.json()
+
         if (response.status === 200) {
             setAuthTokens(data)
             setUser(jwt_decode(data.access))
@@ -34,14 +35,13 @@ export const AuthProvider = ({children}) => {
         }else{
             alert("something went wrong!")
         }
-        
-        console.log(data)
     }
 
     let logoutUser = () => {
         setAuthTokens(null)
         setUser(null)
         localStorage.removeItem('AuthTokens')
+        navigate('/login')
     }
     
     let updateToken = async ()=> {
@@ -50,10 +50,11 @@ export const AuthProvider = ({children}) => {
             headers : {
                 'Content-Type' : 'application/json',
             },
-            body:JSON.stringify({'refresh' : AuthTokens.refresh})
+            body:JSON.stringify({'refresh' : AuthTokens?.refresh})
         })
 
         let data = await response.json()
+
         if (response.status === 200) {
             setAuthTokens(data)
             setUser(jwt_decode(data.access))
@@ -61,27 +62,37 @@ export const AuthProvider = ({children}) => {
         }else{
             logoutUser()
         }
+
+        if(loading){
+            setLoading(false)
+        }
     }
 
     useEffect(()=>{
-        
+
+        if(loading){
+            updateToken()
+        }
+
+
+        let time = 4*60000 //4 minutes
         let interval = setInterval(()=>{
             if(AuthTokens){
                 updateToken()
             }
-        }, 20000) 
+        }, time) 
         return ()=>  clearInterval(interval)
     }, [AuthTokens, loading])
 
     let contextData = {
-
+        AuthTokens : AuthTokens,
         user : user,
         loginUser: loginUser,
         logoutUser : logoutUser
     }
     return (
         <AuthContext.Provider value={contextData} >
-            {children}
+            {loading ? null : children}
         </AuthContext.Provider>
     )
 }

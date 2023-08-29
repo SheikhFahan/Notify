@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Note
+from .models import Note , SubCode
 
 class NoteSerializers(serializers.ModelSerializer):
     prof_name = serializers.SerializerMethodField(read_only = True)
@@ -19,3 +19,10 @@ class NoteSerializers(serializers.ModelSerializer):
 
     def get_prof_name(self, obj):
         return obj.prof_name()
+
+class SubCodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubCode
+        fields = [
+            'sub_code'
+        ]
