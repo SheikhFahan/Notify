@@ -25,10 +25,10 @@ const NotesCard = () => {
        <Card.Body>
          <Card.Title>{item.name}</Card.Title>
          <Card.Subtitle className="mb-2 text-muted">Prof : {item.prof_name}</Card.Subtitle>
-         <Card.Text>
+         {/* <Card.Text>
            Some quick example text to build on the card title and make up the
            bulk of the card's content.
-         </Card.Text>
+         </Card.Text> */}
          <Card.Text>Ideal index : {item.ideal_index}</Card.Text>
          <Card.Title>Subject Code : {item.sub_code}</Card.Title>        
          <Card.Link as={Link} to={item.note}>View Note</Card.Link>

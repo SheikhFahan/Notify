@@ -57,7 +57,7 @@ class Assignment(models.Model):
 
 class Note(models.Model):
     name = models.CharField(null = False , blank = False, max_length=50)
-    user = models.OneToOneField(User,on_delete=models.CASCADE, null = True)  
+    user = models.ForeignKey(User,on_delete=models.CASCADE, null = True)  
     
     # prof= models.ForeignKey(Professor, null = False, on_delete=models.CASCADE, blank = False )
     sub_code = models.ForeignKey(SubCode, null = True, on_delete = models.SET_NULL)
@@ -68,7 +68,7 @@ class Note(models.Model):
 
 
     def prof_name(self):
-        return str(self.prof)
+        return str(self.user.username)
 
     def __str__(self):
         return self.name

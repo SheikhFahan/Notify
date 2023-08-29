@@ -15,7 +15,6 @@ export const AuthProvider = ({children}) => {
     let [loading, setLoading] = useState(true)
 
     let loginUser = async(e) => {
-        console.log('working')
         e.preventDefault()
         let response = await fetch('http://127.0.0.1:8000/api/token/', {
             method : 'POST',
@@ -43,7 +42,7 @@ export const AuthProvider = ({children}) => {
         localStorage.removeItem('AuthTokens')
         navigate('/login')
     }
-    
+
     let updateToken = async ()=> {
         let response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
             method : 'POST',
@@ -88,7 +87,7 @@ export const AuthProvider = ({children}) => {
         AuthTokens : AuthTokens,
         user : user,
         loginUser: loginUser,
-        logoutUser : logoutUser
+        logoutUser : logoutUser,
     }
     return (
         <AuthContext.Provider value={contextData} >

@@ -4,8 +4,8 @@ from . import views
 urlpatterns = [
     path('',views.PdfListAPIView.as_view()),
     path('sub_code/', views.SubCodeListAPIView.as_view()),
-    # path('create/', views.PdfCreateAPIView.as_view()),
-    path('create/', views.test)
+    path('create/', views.PdfCreateAPIView.as_view()),
+    # path('create/', views.test)
 
 ]
 

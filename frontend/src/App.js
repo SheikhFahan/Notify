@@ -9,6 +9,8 @@ import NoPage from './Pages/NoPage'
 import Hero from './Pages/Hero'
 import PdfPage from './Pages/PdfPage';
 import NotesUpload from './Pages/NotesUpload';
+import RegisterPage from './Pages/RegisterPage';
+
 
 import { AuthProvider } from './Context/AuthContext'
 
@@ -36,6 +38,7 @@ function App() {
           <Route path="/about" element={<AboutPage />}/>
           <Route path="/branches" element={<Branches />}/>
           <Route path="/notes" element={<PdfPage />}/>
+          <Route path="/register" element={<RegisterPage />}/>
 
           <Route path="*" element={<NoPage />} />
         </Routes>

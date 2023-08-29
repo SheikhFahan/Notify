@@ -36,7 +36,7 @@ const NotesUpload = () => {
     e.preventDefault()
     const formData = new FormData()
     formData.append('name', name)
-    formData.append('ideal_Index', idealIndex)
+    formData.append('ideal_index', idealIndex)
     formData.append('note', fileData)
     formData.append('visible' , isChecked)
     formData.append('sub_code' , selectedOption)

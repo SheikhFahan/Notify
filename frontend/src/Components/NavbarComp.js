@@ -53,6 +53,7 @@ const NavbarComp = () => {
             {!user && <Nav.Link to="/login" as={Link} className="mx-3">Login</Nav.Link>}
             <Nav.Link to="/about" as={Link} className="mx-3" style={maxContent}>About Us</Nav.Link>
             {user && <Nav.Link className="mx-3" style={maxContent}>{user.username}</Nav.Link>}
+            <Nav.Link to='/register' as={Link} className="mx-3">Register</Nav.Link>
             {user && <Nav.Link to="/" as={Link} className="mx-3" style={maxContent} onClick={logoutUser}>Logout</Nav.Link>}
 
 
