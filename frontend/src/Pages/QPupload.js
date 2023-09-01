@@ -8,7 +8,7 @@ import axios from "axios";
 
 import AuthContext from "../Context/AuthContext";
 
-const AssignmentUpload = () => {
+const QPupload = () => {
   // subcode fetched from the backend
   let [subCode, setSubCode] = useState([]);
   let [isChecked, setIsChecked] = useState(true);
@@ -145,7 +145,7 @@ const AssignmentUpload = () => {
             ))}
           </Form.Select>
           <br />
-           <InputGroup className="mb-3" size="lg" controlId="dateInput">
+           <InputGroup className="mb-3" size="lg">
             <InputGroup.Text id="basic-addon1">Submission Date</InputGroup.Text>
             <Form.Control
               name="date"
@@ -189,4 +189,4 @@ const AssignmentUpload = () => {
     </>
   );
 };
-export default AssignmentUpload;
+export default QPupload;

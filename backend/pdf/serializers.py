@@ -31,7 +31,6 @@ class AssignmentSerializers(serializers.ModelSerializer):
             'prof_name',
             'sub_code',
             'length',
-            'upload_date',
             'assignment',
             'visible',
             'l_submission'

@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 
 from api.permissions import isAdminOrReadOnly, isOwnerOrReadOnly
 
-from .serializers import NoteSerializers, SubCodeSerializer
+from .serializers import NoteSerializers, SubCodeSerializer, AssignmentSerializers, QPSerializers
 from .models import Note, SubCode, Assignment, QuestionPaper
 
 
@@ -24,7 +24,7 @@ class NoteListCreateAPIView(generics.ListCreateAPIView):
 
 class AssignmentListCreateAPIView(generics.ListCreateAPIView):
     queryset = Assignment.objects.all()
-    serializer_class = Assignment
+    serializer_class = AssignmentSerializers
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
@@ -35,7 +35,7 @@ class AssignmentListCreateAPIView(generics.ListCreateAPIView):
 
 class QPListCreateAPIView(generics.ListCreateAPIView):
     queryset = QuestionPaper.objects.all()
-    serializer_class = QuestionPaper
+    serializer_class = QPSerializers
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):

@@ -20,6 +20,7 @@ import PrivateRoutes from './Utils/PrivateRoutes'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ProfileCard from './Pages/ProfileCard';
 import AssignmentUpload from './Pages/AssignmentUpload';
+import QPupload from './Pages/QPupload';
 
 
 
@@ -36,8 +37,11 @@ function App() {
         <Routes>
           <Route element = {<PrivateRoutes/>}>
             {/* <Route element = {<Hero />} path='/' exact/> */}
+            
             <Route path="/upload_notes" element={<NotesUpload />}/>
             <Route path="/upload_assignments" element={<AssignmentUpload/>}/>
+            <Route path="/upload_question_papers" element={<QPupload/>}/>
+
             <Route path="/profile" element={<ProfileCard />}/>
             <Route path="/register" element={<RegisterPage/>} />
           </Route>
