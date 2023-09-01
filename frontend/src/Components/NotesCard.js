@@ -9,7 +9,7 @@ const NotesCard = () => {
   let [note, setNote] = useState([])
   
   useEffect(()=>{
-    axios.get('http://127.0.0.1:8000/api/pdf/')
+    axios.get('http://127.0.0.1:8000/api/pdf/note/')
     .then(response => setNote(response.data))
     .catch(error => console.error('Error fetching data:', error));
   }, [])

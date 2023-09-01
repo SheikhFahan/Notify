@@ -2,39 +2,47 @@ from django.shortcuts import render
 
 from rest_framework.response import Response
 from rest_framework import generics
-
+from rest_framework import permissions
 from rest_framework.decorators import api_view
 
+from api.permissions import isAdminOrReadOnly, isOwnerOrReadOnly
 
 from .serializers import NoteSerializers, SubCodeSerializer
-from .models import Note, SubCode
+from .models import Note, SubCode, Assignment, QuestionPaper
 
-# @api_view(['POST'])
-# def test(request):
-#     print(request.data)
-#     serializer = NoteSerializers(data = request.data)
-#     if serializer.is_valid(raise_exception=True):
-#         print(serializer.data)
-#         return Response(serializer.data)
-#     return Response({"invalid": "not good data"}, status=400)
-    
-#     print(request.GET)
 
-class PdfListAPIView(generics.ListAPIView):
+class NoteListCreateAPIView(generics.ListCreateAPIView):
     queryset = Note.objects.filter(visible = True)
     serializer_class = NoteSerializers
-
-
-
-class PdfCreateAPIView(generics.CreateAPIView):
-    queryset = Note.objects.all()
-    serializer_class = NoteSerializers
-
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
         print(serializer.validated_data)
-        # return super().perform_create(serializer)
+
+
+
+class AssignmentListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Assignment.objects.all()
+    serializer_class = Assignment
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)
+        print(serializer.validated_data)
+
+
+
+class QPListCreateAPIView(generics.ListCreateAPIView):
+    queryset = QuestionPaper.objects.all()
+    serializer_class = QuestionPaper
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)
+        print(serializer.validated_data)
+
+
 
 
 class PdfDetailAPIView(generics.RetrieveAPIView):
@@ -46,10 +54,13 @@ class PdfDestroyAPIView(generics.DestroyAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializers
     lookup_field = 'pk'
+    permission_classes = [permissions.IsAuthenticated, isOwnerOrReadOnly]
 
-class SubCodeListAPIView(generics.ListCreateAPIView):
+
+class SubCodeListCreateAPIView(generics.ListCreateAPIView):
     queryset = SubCode.objects.all()
     serializer_class = SubCodeSerializer
+    permission_classes = [isAdminOrReadOnly]
     
     # def perform_create(self, serializer):
     #     if (self.request.user.is_superuser):

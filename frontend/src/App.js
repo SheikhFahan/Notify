@@ -12,33 +12,40 @@ import NotesUpload from './Pages/NotesUpload';
 import RegisterPage from './Pages/RegisterPage';
 
 
-import { AuthProvider } from './Context/AuthContext'
+import AuthContext, { AuthProvider } from './Context/AuthContext'
 
 import PrivateRoutes from './Utils/PrivateRoutes'
 
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import ProfileCard from './Pages/ProfileCard';
+import AssignmentUpload from './Pages/AssignmentUpload';
+
+
 
 
 function App() {
+
   return (
     <>
     <div className='App'>
       <Router>
         <AuthProvider>
         <NavbarComp/>
-        <Header/>
+        {/* <Header/> */}
         <Routes>
           <Route element = {<PrivateRoutes/>}>
             {/* <Route element = {<Hero />} path='/' exact/> */}
-            <Route path="/upload" element={<NotesUpload />}/>
+            <Route path="/upload_notes" element={<NotesUpload />}/>
+            <Route path="/upload_assignments" element={<AssignmentUpload/>}/>
+            <Route path="/profile" element={<ProfileCard />}/>
+            <Route path="/register" element={<RegisterPage/>} />
           </Route>
           <Route element = {<LoginPage/>} path = '/login' />
           <Route index element={<Hero />} />
           <Route path="/about" element={<AboutPage />}/>
           <Route path="/branches" element={<Branches />}/>
           <Route path="/notes" element={<PdfPage />}/>
-          <Route path="/register" element={<RegisterPage />}/>
 
           <Route path="*" element={<NoPage />} />
         </Routes>

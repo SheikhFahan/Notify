@@ -2,6 +2,8 @@ from django.contrib.auth.models import User, Group
  
 from rest_framework import serializers
 
+from pdf.models import Professor
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -17,4 +19,8 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         group= Group.objects.get(name = 'professors')
         user.groups.add(group)
+        Professor.objects.create(
+            user = user,
+            name = user.username
+        )
         return user

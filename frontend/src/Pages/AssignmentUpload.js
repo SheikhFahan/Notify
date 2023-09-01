@@ -8,15 +8,17 @@ import axios from "axios";
 
 import AuthContext from "../Context/AuthContext";
 
-const NotesUpload = () => {
-  const baseURL = "http://127.0.0.1:8000/api/pdf/";
+const AssignmentUpload = () => {
+  const baseURL = "http://127.0.0.1:8000/api/pdf/assignment/";
   // subcode fetched from the backend
   let [subCode, setSubCode] = useState([]);
   let [isChecked, setIsChecked] = useState(true);
   let [fileData, setFileData] = useState(null);
   let [name, setName] = useState("");
-  let [idealIndex, setIdealIndex] = useState("");
+  let [length, setLength] = useState("");
   let [selectedOption, setSelectedOption] = useState("");
+  // sets date of submission
+  let [sDate, setSDate] = useState("")
 
   const { AuthTokens } = useContext(AuthContext);
 
@@ -33,10 +35,11 @@ const NotesUpload = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("ideal_index", idealIndex);
-    formData.append("pdf", fileData);
+    formData.append("length", length);
+    formData.append("assignment ", fileData);
     formData.append("visible", isChecked);
     formData.append("sub_code", selectedOption);
+    formData.append('s_submission0', sDate)
     console.log(formData);
     try {
       const response = await axios.post(
@@ -64,8 +67,12 @@ const NotesUpload = () => {
     setName(e.target.value);
   };
 
-  const handleIdealIndexChange = (e) => {
-    setIdealIndex(e.target.value);
+  const handleDateChange = (e) => {
+    setSDate(e.target.value)
+  }
+
+  const handleLengthChange = (e) => {
+    setLength(e.target.value);
   };
 
   // handles pdf
@@ -111,18 +118,18 @@ const NotesUpload = () => {
             />
           </InputGroup>
           <InputGroup className="mb-3" size="lg">
-            <InputGroup.Text id="basic-addon1">Ideal Index</InputGroup.Text>
+            <InputGroup.Text id="basic-addon1">
+              Assignment Length{" "}
+            </InputGroup.Text>
             <Form.Control
-              name="ideal_index"
-              placeholder="Enter the Ideal Index '0-5'"
-              aria-label="ideal_index"
+              name="length"
+              placeholder="Enter the length of assignment in words"
+              aria-label="Assignment Length"
               aria-describedby="basic-addon1"
               required
               type="text"
               inputMode="numeric"
-              pattern="[0-5]"
-              max={5}
-              onChange={handleIdealIndexChange}
+              onChange={handleLengthChange}
             />
           </InputGroup>
           <Form.Select
@@ -139,6 +146,18 @@ const NotesUpload = () => {
             ))}
           </Form.Select>
           <br />
+           <InputGroup className="mb-3" size="lg" controlId="dateInput">
+            <InputGroup.Text id="basic-addon1">Submission Date</InputGroup.Text>
+            <Form.Control
+              name="date"
+              placeholder="YYYY-MM-DD"
+              aria-label="submission date"
+              aria-describedby="basic-addon1"
+              required
+              onChange={handleDateChange}
+            />
+          </InputGroup>
+
 
           <Form.Group className="position-relative mb-3">
             <Form.Control
@@ -171,4 +190,4 @@ const NotesUpload = () => {
     </>
   );
 };
-export default NotesUpload;
+export default AssignmentUpload;

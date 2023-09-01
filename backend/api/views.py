@@ -27,19 +27,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
-@api_view(['GET'])
-def getRoutes(request):
-    routes = [
-        '/api/tokens',
-        '/api/token/refresh',
-    ]
-
-    return Response(routes)
-
 class UserCreateAPIView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         print(serializer.validated_data)

@@ -51,7 +51,7 @@ const RegisterPage = () => {
 
     try {
       const response = await axios.post(
-        "//127.0.0.1:8000/api/create_user",
+        "//127.0.0.1:8000/api/create_user/",
         formData,
         {
           headers: {
@@ -62,6 +62,7 @@ const RegisterPage = () => {
       );
       console.log("Response", response.data);
     } catch (error) {
+
       console.error("Registration failed:", error);
     }
   };
@@ -93,7 +94,7 @@ const RegisterPage = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
             placeholder="Re-enter Password"
