@@ -47,8 +47,8 @@ const NavbarComp = () => {
             
             <NavDropdown title="Resources" id="basic-nav-dropdown" className="mx-3">
               <NavDropdown.Item as={Link} to="/notes">Notes</NavDropdown.Item>
-              <NavDropdown.Item to="#action/3.2">Assignments</NavDropdown.Item>
-              <NavDropdown.Item to="#action/3.3">Question Papers</NavDropdown.Item>
+              <NavDropdown.Item  as={Link} to="/assignments">Assignments</NavDropdown.Item>
+              <NavDropdown.Item  as={Link} to="/question_papers">Question Papers</NavDropdown.Item>
               <NavDropdown.Divider />
               {user && <NavDropdown.Item as={Link} to="/upload_notes">Upload Notes</NavDropdown.Item>}
               {user && <NavDropdown.Item as={Link} to="/upload_assignments">Upload Assignments</NavDropdown.Item>}

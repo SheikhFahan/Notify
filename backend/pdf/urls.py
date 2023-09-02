@@ -6,8 +6,9 @@ urlpatterns = [
     path('assignment/',views.AssignmentListCreateAPIView.as_view()),
     path('question_paper/',views.QPListCreateAPIView.as_view()),
     path('sub_code/', views.SubCodeListCreateAPIView.as_view()),
-    # path('create/', views.PdfCreateAPIView.as_view()),
-    # path('create/', views.test)
+    path('<int:pk>/delete_note/',views.NoteDestroyAPIView.as_view()),
+    path('<int:pk>/delete_assignment/',views.AssigmentDestroyAPIView.as_view()),
+    path('<int:pk>/delete_question_paper/',views.QPDestroyAPIView.as_view()),
 
 ]
 

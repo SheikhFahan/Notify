@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 
-from .models import Note , SubCode, Professor, Assignment
+from .models import Note , SubCode, Professor, Assignment, QuestionPaper
 
 class NoteSerializers(serializers.ModelSerializer):
     prof_name = serializers.SerializerMethodField(read_only = True)
@@ -9,6 +9,7 @@ class NoteSerializers(serializers.ModelSerializer):
     class Meta:
         model = Note 
         fields = [
+            'pk',
             'name',
             'prof_name',
             'sub_code',
@@ -27,6 +28,7 @@ class AssignmentSerializers(serializers.ModelSerializer):
     class Meta:
         model = Assignment 
         fields = [
+            'pk',
             'name',
             'prof_name',
             'sub_code',
@@ -41,11 +43,12 @@ class AssignmentSerializers(serializers.ModelSerializer):
 
 # for question papers
 class QPSerializers(serializers.ModelSerializer):
-
     class Meta:
-        model = Assignment 
+        model = QuestionPaper 
         fields = [
+            'pk',
             'name',
+            'prof_name',
             'sub_code',
             'date',
             'questionPaper',
@@ -59,6 +62,7 @@ class SubCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubCode
         fields = [
+            'pk'
             'sub_code'
         ]
     

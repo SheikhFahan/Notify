@@ -97,7 +97,9 @@ class QuestionPaper(models.Model):
     date = models.DateField( null = True, blank = False)
     questionPaper = models.FileField(null = True, upload_to='pdf/question_papers/', max_length=100, verbose_name = 'Pdf')
 
-    
+    def prof_name(self):
+        return str(self.user.username)
+
     def __str__(self):
         return self.name
     

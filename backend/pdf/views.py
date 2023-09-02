@@ -20,6 +20,12 @@ class NoteListCreateAPIView(generics.ListCreateAPIView):
         serializer.save(user = self.request.user)
         print(serializer.validated_data)
 
+class NoteDestroyAPIView(generics.DestroyAPIView):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializers
+    lookup_field = 'pk'
+    permission_classes = [permissions.IsAuthenticated, isOwnerOrReadOnly]
+
 
 
 class AssignmentListCreateAPIView(generics.ListCreateAPIView):
@@ -30,6 +36,13 @@ class AssignmentListCreateAPIView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
         print(serializer.validated_data)
+
+class AssigmentDestroyAPIView(generics.DestroyAPIView):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializers
+    lookup_field = 'pk'
+    permission_classes = [permissions.IsAuthenticated, isOwnerOrReadOnly]
+
 
 
 
@@ -42,19 +55,12 @@ class QPListCreateAPIView(generics.ListCreateAPIView):
         serializer.save(user = self.request.user)
         print(serializer.validated_data)
 
-
-
-
-class PdfDetailAPIView(generics.RetrieveAPIView):
-    queryset = Note.objects.all()
-    serializer_class = NoteSerializers
-    lookup_field = 'pk'
-
-class PdfDestroyAPIView(generics.DestroyAPIView):
+class QPDestroyAPIView(generics.DestroyAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializers
     lookup_field = 'pk'
     permission_classes = [permissions.IsAuthenticated, isOwnerOrReadOnly]
+
 
 
 class SubCodeListCreateAPIView(generics.ListCreateAPIView):

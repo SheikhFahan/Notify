@@ -40,7 +40,7 @@ const NotesUpload = () => {
     console.log(formData);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/pdf/create/",
+        "http://127.0.0.1:8000/api/pdf/note/",
         formData,
         {
           headers: {

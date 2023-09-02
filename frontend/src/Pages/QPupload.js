@@ -11,13 +11,11 @@ import AuthContext from "../Context/AuthContext";
 const QPupload = () => {
   // subcode fetched from the backend
   let [subCode, setSubCode] = useState([]);
-  let [isChecked, setIsChecked] = useState(true);
   let [fileData, setFileData] = useState(null);
   let [name, setName] = useState("");
-  let [length, setLength] = useState("");
   let [selectedOption, setSelectedOption] = useState("");
   // sets date of submission
-  let [sDate, setSDate] = useState("")
+  let [date, setDate] = useState("")
 
   const { AuthTokens } = useContext(AuthContext);
 
@@ -34,15 +32,13 @@ const QPupload = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("length", length);
-    formData.append("assignment ", fileData);
-    formData.append("visible", isChecked);
+    formData.append("questionPaper ", fileData);
+    formData.append('date', date);
     formData.append("sub_code", selectedOption);
-    formData.append('l_submission', sDate)
     console.log(formData);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/pdf/assignment/",
+        "http://127.0.0.1:8000/api/pdf/question_paper/",
         formData,
         {
           headers: {
@@ -57,22 +53,13 @@ const QPupload = () => {
     }
   };
 
-  // handles the change in the visible switch
-  const handleSwitchChange = () => {
-    setIsChecked(!isChecked);
-  };
-
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
   const handleDateChange = (e) => {
-    setSDate(e.target.value)
+    setDate(e.target.value)
   }
-
-  const handleLengthChange = (e) => {
-    setLength(e.target.value);
-  };
 
   // handles pdf
   const handleFileChange = (e) => {
@@ -116,21 +103,6 @@ const QPupload = () => {
               onChange={handleNameChange}
             />
           </InputGroup>
-          <InputGroup className="mb-3" size="lg">
-            <InputGroup.Text id="basic-addon1">
-              Assignment Length{" "}
-            </InputGroup.Text>
-            <Form.Control
-              name="length"
-              placeholder="Enter the length of assignment in words"
-              aria-label="Assignment Length"
-              aria-describedby="basic-addon1"
-              required
-              type="text"
-              inputMode="numeric"
-              onChange={handleLengthChange}
-            />
-          </InputGroup>
           <Form.Select
             size="lg"
             value={selectedOption}
@@ -172,14 +144,6 @@ const QPupload = () => {
               {/* {errors.file} */}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Check
-            className="mb-3"
-            type="switch"
-            id="custom-switch"
-            label="visible"
-            checked={isChecked}
-            onChange={handleSwitchChange}
-          />
 
           <Button variant="primary" type="submit" style={submit}>
             Submit

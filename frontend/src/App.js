@@ -21,6 +21,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ProfileCard from './Pages/ProfileCard';
 import AssignmentUpload from './Pages/AssignmentUpload';
 import QPupload from './Pages/QPupload';
+import AssignmentPage from './Pages/AssignmentPage';
+import QP from './Pages/QP';
 
 
 
@@ -50,6 +52,9 @@ function App() {
           <Route path="/about" element={<AboutPage />}/>
           <Route path="/branches" element={<Branches />}/>
           <Route path="/notes" element={<PdfPage />}/>
+          <Route path="/assignments" element={<AssignmentPage/>}/>
+          <Route path="/question_papers" element={<QP/>}/>
+
 
           <Route path="*" element={<NoPage />} />
         </Routes>
