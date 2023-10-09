@@ -20,11 +20,14 @@ class NoteListCreateAPIView(generics.ListCreateAPIView):
         serializer.save(user = self.request.user)
         print(serializer.validated_data)
 
-class NoteDestroyAPIView(generics.DestroyAPIView):
+class NoteDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializers
     lookup_field = 'pk'
     permission_classes = [permissions.IsAuthenticated, isOwnerOrReadOnly]
+
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
 
 
 
@@ -37,7 +40,7 @@ class AssignmentListCreateAPIView(generics.ListCreateAPIView):
         serializer.save(user = self.request.user)
         print(serializer.validated_data)
 
-class AssigmentDestroyAPIView(generics.DestroyAPIView):
+class AssigmentDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializers
     lookup_field = 'pk'

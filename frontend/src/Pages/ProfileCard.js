@@ -5,11 +5,10 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../Context/AuthContext";
-import NotesCard from "../Components/NotesCard";
 
 
 const ProfileCard = () => {
-  let [responseData, setResponseData] = useState([]);
+  let [note, setNote] = useState([]);
   const {AuthTokens} = useContext(AuthContext)
   const [notes, setNotes] = useState(false);
   const [assignments, setAssignments] = useState(false);
@@ -22,9 +21,7 @@ const ProfileCard = () => {
       .get("http://127.0.0.1:8000/api/pdf/note/")
       .then((response) => setNote(response.data))
       .catch((error) => console.error("Error fetching data:", error));
-  
-      setResponseData(response)
-    }, []);
+  }, []);
 
   const handleDelete = async (event, pk) => {
     try {
@@ -45,16 +42,6 @@ const ProfileCard = () => {
 
 
 
-  // Define functions to toggle the visibility of components
-  const toggleComponentA = () => {
-    setShowComponentA(!showComponentA);
-    setShowComponentB(false); // Hide other components if needed
-  };
-
-  const toggleComponentB = () => {
-    setShowComponentB(!showComponentB);
-    setShowComponentA(false); // Hide other components if needed
-  };
   return (
     <Container fluid>
       <Card style={{ width: "18rem" }}>
@@ -66,10 +53,9 @@ const ProfileCard = () => {
           <Button variant="primary">Go somewhere</Button>
         </Card.Body>
       </Card>
+
       <p>under this are the notes corresponding to the user</p>
-      <button onClick={toggleNotes}><NotesCard data = {responseData}/></button>
-      {/* <button onClick={toggleAssignment}>Show Component B</button> */}
-      {/* <div>
+      <div>
         {note.map((item) => (
           <Card style={{ width: "18rem" }}>
             <Card.Body>
@@ -104,7 +90,7 @@ const ProfileCard = () => {
             </Card.Body>
           </Card>
         ))}
-      </div> */}
+      </div>
     </Container>
   );
 };

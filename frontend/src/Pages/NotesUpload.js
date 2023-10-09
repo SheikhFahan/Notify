@@ -34,7 +34,7 @@ const NotesUpload = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("ideal_index", idealIndex);
-    formData.append("pdf", fileData);
+    formData.append("note", fileData);
     formData.append("visible", isChecked);
     formData.append("sub_code", selectedOption);
     console.log(formData);

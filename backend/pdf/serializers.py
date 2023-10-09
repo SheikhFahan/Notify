@@ -62,7 +62,7 @@ class SubCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubCode
         fields = [
-            'pk'
+            # 'pk'
             'sub_code'
         ]
     
