@@ -1,0 +1,83 @@
+@import url("https:/fonts.googleapis.com/css2?family=Poppins&display=swap");
+/*   color variables */
+/*   border radius */
+
+.page-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns, each taking 50% of the width*/
+  }
+  
+  .wrapper {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    gap: 2rem;
+    justify-content: center;
+    align-items: center; /* Vertically center content */
+  }
+  
+  .visit {
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+.card {
+  overflow: hidden;
+  box-shadow: 0 2px 20px #e1e5ee;
+  border-radius: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 200ms ease-in;
+}
+.card__title {
+  padding: 1rem;
+}
+.card__description {
+  padding: 0 1rem;
+}
+.card__btn1 {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid #d50000;
+  background: transparent;
+  color: #d50000;
+  border-radius: 1em;
+  transition: background 200ms ease-in, color 200ms ease-in;
+}
+.card__btn2 {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid #d50000;
+  background: transparent;
+  color: #d50000;
+  border-radius: 1em;
+  transition: background 200ms ease-in, color 200ms ease-in;
+}
+.card:hover {
+  transform: scale(1.02);
+}
+.card__btn1:hover {
+  background: #d50000;
+  color: white;
+}
+.card__btn2:hover {
+  background: #d50000;
+  color: white;
+}
