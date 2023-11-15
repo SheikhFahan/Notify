@@ -46,12 +46,12 @@ function Card({ note, openPdf }) {
 
       <div className="card__btn1" onClick={() => openPdf(note.note)}>
         <a href={note.note} target="_blank" rel="noopener noreferrer">
-          <span>View Note</span>
+        <span><p className="btn_txt">View Note</p></span>
         </a>
       </div>
       <div className="card__btn2">
         <a href={note.note} download={note.note}>
-          Download Note
+          <span><p className="btn_txt">Download Note</p></span>
         </a>
       </div>
     </div>
