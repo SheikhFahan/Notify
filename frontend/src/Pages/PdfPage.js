@@ -1,9 +1,9 @@
 import React from 'react'
-import NotesCard from '../Components/NotesCard'
+import NotesCard1 from '../Components/NotesCard1'
 
 const PdfPage = () => {
   return (
-    <div><NotesCard/></div>
+    <div><NotesCard1/></div>
   )
 }
 
