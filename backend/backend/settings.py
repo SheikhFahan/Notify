@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     # project apps
     'api',
     'pdf',
+    # content security policy
+    'csp',
 
 ]
 
@@ -54,7 +56,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # cors middlewares
     'corsheaders.middleware.CorsMiddleware',
-
+    # csp
+    'csp.middleware.CSPMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -179,6 +182,9 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_FRAME_ANCESTORS = ("'self'", "http://localhost:3000/")
 
 
 # Static files (CSS, JavaScript, Images)
