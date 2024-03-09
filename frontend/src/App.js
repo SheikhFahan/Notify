@@ -23,6 +23,7 @@ import AssignmentUpload from './Pages/AssignmentUpload';
 import QPupload from './Pages/QPupload';
 import AssignmentPage from './Pages/AssignmentPage';
 import QP from './Pages/QP';
+import VisibilityChange from './Pages/VisibilityChange';
 
 
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="/upload_question_papers" element={<QPupload/>}/>
 
             <Route path="/profile" element={<ProfileCard />}/>
+            <Route path="/change_visibility" element={<VisibilityChange />}/>
             <Route path="/register" element={<RegisterPage/>} />
           </Route>
           <Route element = {<LoginPage/>} path = '/login' />

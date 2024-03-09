@@ -40,6 +40,7 @@ a:hover {
   justify-content: space-between;
   cursor: pointer;
   transition: transform 200ms ease-in;
+  margin: 35px;
 }
 .card__title {
   padding: 1rem;
