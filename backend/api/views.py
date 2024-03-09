@@ -32,6 +32,13 @@ class UserCreateAPIView(generics.CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def post(self, request, *args, **kwargs):
+        print(request.data)
+        serializer  = self.get_serializer(data = request.data)
+        if not serializer.is_valid():
+            print(serializer.errors)
+        return super().post(request, *args, **kwargs)
+
     def perform_create(self, serializer):
         print(serializer.validated_data)
         serializer.save()
